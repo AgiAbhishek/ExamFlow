@@ -182,6 +182,17 @@ export class MongoStorage implements IStorage {
     }
   }
 
+  async getResultById(resultId: string): Promise<Result | null> {
+    try {
+      const { ObjectId } = await import('mongodb');
+      const result = await mongodb.results().findOne({ _id: new ObjectId(resultId) } as any);
+      return result ? { ...result, _id: result._id.toString() } : null;
+    } catch (error) {
+      console.error('Error getting result:', error);
+      return null;
+    }
+  }
+
   async getResultByExamId(examId: string): Promise<Result | null> {
     try {
       const result = await mongodb.results().findOne({ examId });

@@ -257,7 +257,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Results routes
   app.get("/api/results/:resultId", authenticateToken, async (req: AuthRequest, res) => {
     try {
-      const result = await storage.getResultByExamId(req.params.resultId);
+      const result = await storage.getResultById(req.params.resultId);
       if (!result) {
         return res.status(404).json({ message: "Result not found" });
       }

@@ -1,5 +1,7 @@
 import { MongoClient, Db, Collection } from 'mongodb';
 import { User, Question, Exam, Result } from '@shared/schema';
+import dotenv from "dotenv";
+dotenv.config();
 
 class MongoDB {
   private client: MongoClient | null = null;
